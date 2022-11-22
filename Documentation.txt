@@ -1,0 +1,30 @@
+Project2 Model Documentation
+
+(a) GNB -- Project2_GNB
+1. GNB as Classifier
+2. Apply the Label_Powerset() to Achieve Multi-lable Classificaiton
+3. Use the Co-author as Predictor and Profilic-authors as reponse (one-hot encoded version) 
+4. Tune the Hyper-parameter with Pipeline and get var_smoothing = 0.0015 to obtain the best F1 Score (0.53755)
+
+(b) GNB & Majority Voting -- Project2_GNBVote
+1. Same processing as in GNB Method but apply logic of majority voting to achieve a better result
+2. Idea: An assemble of the weak models can obtain a better model
+3. Train the Multi-label GNB Models ith randomly selected Training set with a fixed proportion of 0.66
+4. Collect the Predicted result based on the above trained model and use majority voting to obtain the result
+
+(c) MLP -- Project2_MLP
+1. Create Sequential() NN with hidden size [dim(coauthors)[1], 20, dim(authors)[1]]
+2. The first layer uses relu and the second layer uses sigmoid as optimization function
+3. Use keras_tuner.RandomSearch 
+4. Use tuner.search to look for the best model based on training and validation sets according to the best loss 
+
+(d) MLP & Majority Voting -- Project2_MLPVote
+1. Same processing as in MLP Method but apply logic of majority voting to achieve a better result
+2. Idea: An assemble of the weak models can obtain a better model
+3. Train the Multi-label MLP Models ith randomly selected Training set with a fixed proportion of 0.66
+4. Collect the Predicted result based on the above trained model and use majority voting to obtain the result
+
+(e) LSTM -- Project2_LSTM
+1. Preprocess the data by removing the words (numbers) that frequently appear in the title / abstract feature
+2. Set the title or abstract as sequential data and pick profilic-author as response
+3. Fit the LSTM model and see the performance
